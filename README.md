@@ -17,11 +17,11 @@ Table of Contents
 [x] Take the red pill
 Conventional Programming
 Pattern Matching
-[ ] Assignment: I Do Not Think It Means What You Think It Means.
-[ ] More Complex Matches
-[ ] Ignoring a Value with _ (Underscore)
-[ ] Variables Bind Once (per Match)
-[ ] Another Way of Looking at the Equals Sign
+[x] Assignment: I Do Not Think It Means What You Think It Means.
+[x] More Complex Matches
+[x] Ignoring a Value with _ (Underscore)
+[x] Variables Bind Once (per Match)
+[x] Another Way of Looking at the Equals Sign
 Immutability
 [ ] You Already Have (Some) Immutable Data
 [ ] Immutable Data Is Known Data
