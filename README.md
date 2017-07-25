@@ -23,10 +23,10 @@ Pattern Matching
 [x] Variables Bind Once (per Match)
 [x] Another Way of Looking at the Equals Sign
 Immutability
-[ ] You Already Have (Some) Immutable Data
-[ ] Immutable Data Is Known Data
-[ ] Performance Implications of Immutability
-[ ] Coding with Immutable Data
+[x] You Already Have (Some) Immutable Data
+[x] Immutable Data Is Known Data
+[x] Performance Implications of Immutability
+[x] Coding with Immutable Data
 Elixir Basics
 [ ] Built-in Types
 [ ] Value Types
