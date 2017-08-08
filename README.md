@@ -1,3 +1,4 @@
+[![GitPitch](https://gitpitch.com/assets/badge.svg)](https://gitpitch.com/enogrob/ebook-programming-elixir/master)
 ```
 Roberto Nogueira  BSd EE, MSd CE
 Solution Integrator Experienced - Certified by Ericsson
@@ -5,7 +6,9 @@ Solution Integrator Experienced - Certified by Ericsson
 
 # Programming Elixir
 
-![ebook_cover](images/ebook_cover.png)
+![ebook_cover](assets/ebook.png)
+
+[Homepage](https://pragprog.com/book/elixir13/programming-elixir-1-3)
 
 ## Table of Contents
 
