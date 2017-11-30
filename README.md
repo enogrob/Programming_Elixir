@@ -31,10 +31,10 @@ Immutability
 [x] Performance Implications of Immutability
 [x] Coding with Immutable Data
 Elixir Basics
-[ ] Built-in Types
-[ ] Value Types
-[ ] System Types
-[ ] Collection Types
+[x] Built-in Types
+[x] Value Types
+[x] System Types
+[x] Collection Types
 [ ] Maps
 [ ] Names, Source Files, Conventions, Operators, and So On
 [ ] Variable Scope
