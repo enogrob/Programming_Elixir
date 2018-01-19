@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule WeatherHistory do
 
@@ -23,7 +23,7 @@ defmodule WeatherHistory do
     ]
   end
 
-  def for_location([], target_loc), do: []
+  def for_location([], _target_loc), do: []
 
   def for_location([ head = [_, target_loc, _, _ ] | tail], target_loc) do
     [ head | for_location(tail, target_loc) ]

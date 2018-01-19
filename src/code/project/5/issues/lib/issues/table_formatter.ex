@@ -1,32 +1,32 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Issues.TableFormatter do
 
   import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1 ]
 
   @doc """
-  Takes a list of row data, where each row is a HashDict, and a list of
+  Takes a list of row data, where each row is a Map, and a list of
   headers. Prints a table to STDOUT of the data from each row
   identified by each header. That is, each header identifies a column,
   and those columns are extracted and printed from the rows.
-
   We calculate the width of each column to fit the longest element
   in that column.
   """
   def print_table_for_columns(rows, headers) do
-    data_by_columns = split_into_columns(rows, headers)
-    column_widths   = widths_of(data_by_columns)
-    format          = format_for(column_widths)
-
-    puts_one_line_in_columns headers, format
-    IO.puts         separator(column_widths)
-    puts_in_columns data_by_columns, format
+    with data_by_columns = split_into_columns(rows, headers),
+         column_widths   = widths_of(data_by_columns),
+         format          = format_for(column_widths)
+    do
+         puts_one_line_in_columns(headers, format)
+         IO.puts(separator(column_widths))
+         puts_in_columns(data_by_columns, format)
+    end
   end
 
   @doc """
@@ -37,8 +37,8 @@ defmodule Issues.TableFormatter do
 
   ## Example
 
-      iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], HashDict.new),
-      ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], HashDict.new)]
+      iex> list = [Enum.into([{"a", "1"},{"b", "2"},{"c", "3"}], %{}),
+      ...>         Enum.into([{"a", "4"},{"b", "5"},{"c", "6"}], %{})]
       iex> Issues.TableFormatter.split_into_columns(list, [ "a", "b", "c" ])
       [ ["1", "4"], ["2", "5"], ["3", "6"] ]
 
@@ -61,9 +61,9 @@ defmodule Issues.TableFormatter do
   def printable(str), do: to_string(str)
  
   @doc """
-  Given a list containing sublists, where each sublist contains the data for 
+  Given a list containing sublists, where each sublist contains the data for
   a column, return a list containing the maximum width of each column
-  
+
   ## Example
       iex> data = [ [ "cat", "wombat", "elk"], ["mongoose", "ant", "gnu"]]
       iex> Issues.TableFormatter.widths_of(data)
@@ -101,7 +101,7 @@ defmodule Issues.TableFormatter do
 
   @doc """
   Given a list containing rows of data, a list containing the header selectors,
-  and a format string, write the extracted data under control of the format string. 
+  and a format string, write the extracted data under control of the format string.
   """
   def puts_in_columns(data_by_columns, format) do
     data_by_columns

@@ -1,32 +1,36 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
-defmodule Sequence.Mixfile do
+defmodule Sequence.MixProject do
   use Mix.Project
 
   def project do
-    [ app: :sequence,
-      version: "0.0.1",
-      elixir: "~> 0.12",
-      deps: deps ]
+    [
+      app: :sequence,
+      version: "0.1.0",
+      elixir: "~> 1.6-dev",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
   end
 
-  # Configuration for the OTP application
+  # Run "mix help compile.app" to learn about applications.
   def application do
-    [mod: { Sequence, [] }]
+    [
+      extra_applications: [:logger]
+    ]
   end
 
-  # Returns the list of dependencies in the format:
-  # { :foobar, git: "https://github.com/elixir-lang/foobar.git", tag: "0.1" }
-  #
-  # To specify particular versions, regardless of the tag, do:
-  # { :barbat, "~> 0.1", github: "elixir-lang/barbat.git" }
+  # Run "mix help deps" to learn about dependencies.
   defp deps do
-    []
+    [
+      # {:dep_from_hexpm, "~> 0.3.0"},
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+    ]
   end
 end

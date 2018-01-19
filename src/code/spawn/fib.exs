@@ -1,18 +1,18 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule FibSolver do
 
   def fib(scheduler) do
-    send scheduler, { :ready, self }
+    send scheduler, { :ready, self() }
     receive do
       { :fib, n, client } ->
-        send client, { :answer, n, fib_calc(n), self }
+        send client, { :answer, n, fib_calc(n), self() }
         fib(scheduler)
       { :shutdown } ->
         exit(:normal)
@@ -29,7 +29,7 @@ defmodule Scheduler do
 
   def run(num_processes, module, func, to_calculate) do
     (1..num_processes)
-    |> Enum.map(fn(_) -> spawn(module, func, [self]) end)
+    |> Enum.map(fn(_) -> spawn(module, func, [self()]) end)
     |> schedule_processes(to_calculate, [])
   end
 
@@ -37,7 +37,7 @@ defmodule Scheduler do
     receive do 
       {:ready, pid} when length(queue) > 0 ->
         [ next | tail ] = queue
-        send pid, {:fib, next, self}
+        send pid, {:fib, next, self()}
         schedule_processes(processes, tail, results)
 
       {:ready, pid} ->
@@ -54,11 +54,14 @@ defmodule Scheduler do
   end
 end
 
-to_process = [ 37, 37, 37, 37, 37, 37 ]
+to_process = List.duplicate(37, 20)
 
 Enum.each 1..10, fn num_processes ->
-  {time, result} = :timer.tc(Scheduler, :run, 
-                               [num_processes, FibSolver, :fib, to_process])
+  {time, result} = :timer.tc(
+    Scheduler, :run,
+    [num_processes, FibSolver, :fib, to_process]
+  )
+
   if num_processes == 1 do
     IO.puts inspect result
     IO.puts "\n #   time (s)"

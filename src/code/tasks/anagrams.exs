@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Dictionary do
 
@@ -14,25 +14,25 @@ defmodule Dictionary do
   # External API
 
   def start_link, 
-  do: Agent.start_link(fn -> HashDict.new end, name: @name)
+  do: Agent.start_link(fn -> %{} end, name: @name)
 
   def add_words(words),
   do: Agent.update(@name, &do_add_words(&1, words))
 
   def anagrams_of(word),
-  do: Agent.get(@name, &Dict.get(&1, signature_of(word)))
+  do: Agent.get(@name, &Map.get(&1, signature_of(word)))
 
   ##
   # Internal implementation
 
-  defp do_add_words(dict, words),
-  do: Enum.reduce(words, dict, &add_one_word(&1, &2))
+  defp do_add_words(map, words),
+  do: Enum.reduce(words, map, &add_one_word(&1, &2))
   
-  defp add_one_word(word, dict),
-  do: Dict.update(dict, signature_of(word), [word], &[word|&1])
+  defp add_one_word(word, map),
+  do: Map.update(map, signature_of(word), [word], &[word|&1])
 
   defp signature_of(word),
-  do: word |> to_char_list |> Enum.sort |> to_string
+  do: word |> to_charlist |> Enum.sort |> to_string
 
 end
 
@@ -45,7 +45,7 @@ defmodule WordlistLoader do
 
   defp load_task(file_name) do
     File.stream!(file_name, [], :line)
-    |> Enum.map(&String.strip/1)
+    |> Enum.map(&String.trim/1)
     |> Dictionary.add_words
   end
 end

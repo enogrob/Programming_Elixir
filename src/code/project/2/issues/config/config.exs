@@ -1,25 +1,33 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 # This file is responsible for configuring your application
-# and its dependencies. The Mix.Config module provides functions
-# to aid in doing so.
+# and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-# Note this file is loaded before any dependency and is restricted
+# This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
-# file won't be loaded nor affect the parent project.
+# file won't be loaded nor affect the parent project. For this reason,
+# if you want to provide default values for your application for
+# 3rd-party users, it should be done in your "mix.exs" file.
 
-# Sample configuration:
+# You can configure your application as:
 #
-#     config :my_dep,
-#       key: :value,
-#       limit: 42
+#     config :issues, key: :value
+#
+# and access this configuration in your application as:
+#
+#     Application.get_env(:issues, :key)
+#
+# You can also configure a 3rd-party app:
+#
+#     config :logger, level: :info
+#
 
 # It is also possible to import configuration files, relative to this
 # directory. For example, you can emulate configuration per environment

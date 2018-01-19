@@ -1,30 +1,35 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Evaluator.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :evaluator,
-      version: "0.0.1",
-      deps: deps(Mix.env) ]
+    [
+      app:             :evaluator,
+      version:         "0.0.1",
+      build_path:      "../../_build",
+      config_path:     "../../config/config.exs",
+      deps_path:       "../../deps",
+      lockfile:        "../../mix.lock",
+      build_embedded:  Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      deps:            deps()
+    ]
   end
 
-  # Configuration for the OTP application
   def application do
-    [ ]
+    [
+      applications: [:logger]
+    ]
   end
 
-  defp deps(:test) do
-     [ { :line_sigil, path: "../line_sigil" } ] ++ deps(:default)
-  end
-
-  defp deps(_) do
+  defp deps do
     []
   end
 end

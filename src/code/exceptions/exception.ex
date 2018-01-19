@@ -1,13 +1,12 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Boom do
-  
   def start(n) do
     try do
       raise_error(n)
@@ -15,10 +14,11 @@ defmodule Boom do
       [ FunctionClauseError, RuntimeError ] ->
         IO.puts "no function match or runtime error"
       error in [ArithmeticError]  ->
-        IO.puts "Uh-oh! Arithmetic error: #{error.message}"
-        raise error, [ message: "too late, we're doomed"], System.stacktrace
+        IO.inspect error
+        IO.puts "Uh-oh! Arithmetic error"
+        reraise "too late, we're doomed", System.stacktrace
       other_errors ->
-        IO.puts "Disaster! #{other_errors.message}"
+        IO.puts "Disaster! #{inspect other_errors}"
     after
         IO.puts "DONE!"
     end
@@ -28,9 +28,9 @@ defmodule Boom do
     IO.puts "No error"
   end
 
-  defp raise_error(1) do                 
+  defp raise_error(val = 1) do
     IO.puts "About to divide by zero"
-    1 / 0
+    1 / (val-1)
   end
 
   defp raise_error(2) do

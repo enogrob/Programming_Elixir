@@ -1,12 +1,16 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Issues.CLI do
+
+  import Issues.TableFormatter, only: [ print_table_for_columns: 2 ]
+  
+  @default_count 4
 
   @moduledoc """
   Handle the command line parsing and the dispatch to
@@ -14,16 +18,12 @@ defmodule Issues.CLI do
   table of the last _n_ issues in a github project
   """
 
-  @default_count 4
-
-  import Issues.TableFormatter, only: [ print_table_for_columns: 2 ]
-
   def main(argv) do
     argv 
-      |> parse_args 
-      |> process
+    |> parse_args
+    |> process
   end
-
+  
   @doc """
   `argv` can be -h or --help, which returns   `:help`.
 
@@ -32,17 +32,23 @@ defmodule Issues.CLI do
 
   Return a tuple of `{ user, project, count }`, or `nil` if help was given.
   """
-
   def parse_args(argv) do
-    parse = OptionParser.parse(argv, switches: [ help: :boolean],
-                                     aliases:  [ h:    :help   ])
-    case  parse  do
+    OptionParser.parse(argv, switches: [ help: :boolean],
+                             aliases:  [ h:    :help   ])
+    |> elem(1)
+    |> args_to_internal_representation()
+  end
 
-    { [ help: true ], _,           _ } -> :help
-    { _, [ user, project, count ], _ } -> { user, project, String.to_integer(count) }
-    { _, [ user, project ],        _ } -> { user, project, @default_count }
-    _                                  -> :help
-    end
+  def args_to_internal_representation([user, project, count]) do
+    { user, project, String.to_integer(count) }
+  end
+
+  def args_to_internal_representation([user, project]) do
+    { user, project, @default_count }
+  end
+  
+  def args_to_internal_representation(_) do # bad arg or --help
+    :help
   end
 
   def process(:help) do
@@ -54,27 +60,31 @@ defmodule Issues.CLI do
 
   def process({user, project, count}) do
     Issues.GithubIssues.fetch(user, project)
-      |>  decode_response
-      |>  convert_to_list_of_hashdicts
-      |>  sort_into_ascending_order
-      |>  Enum.take(count) 
-      |>  print_table_for_columns(["number", "created_at", "title"])
+    |> decode_response()
+    |> sort_into_ascending_order()
+    |> last(count)
+    |> print_table_for_columns(["number", "created_at", "title"])    
   end
-
+  
+  
   def decode_response({:ok, body}), do: body
+
   def decode_response({:error, error}) do
-    {_, message} = List.keyfind(error, "message", 0)
-    IO.puts "Error fetching from Github: #{message}"
+    IO.puts "Error fetching from Github: #{error["message"]}"
     System.halt(2)
   end
 
-  def convert_to_list_of_hashdicts(list) do
-    list |> Enum.map(&Enum.into(&1, HashDict.new))
+  def last(list, count) do
+    list
+    |> Enum.reverse
+    |> Enum.take(count)
+    |> Enum.reverse
   end
 
   def sort_into_ascending_order(list_of_issues) do
-    Enum.sort list_of_issues, 
-              fn i1, i2 -> i1["created_at"] <= i2["created_at"] end
+    list_of_issues
+    |> Enum.sort(fn i1, i2 ->
+          i1["created_at"] <= i2["created_at"]
+       end)
   end
-
 end

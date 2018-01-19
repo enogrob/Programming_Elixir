@@ -1,15 +1,14 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
-defmodule FibAgent do 
+defmodule FibAgent do
   def start_link do
-    cache = Enum.into([{0, 0}, {1, 1}], HashDict.new)
-    Agent.start_link(fn -> cache end)
+    Agent.start_link(fn -> %{ 0 => 0, 1 => 1 } end)
   end
  
   def fib(pid, n) when n >= 0 do
@@ -17,15 +16,18 @@ defmodule FibAgent do
   end
  
   defp do_fib(cache, n) do
-    if cached = cache[n] do
-      {cached, cache}
-    else
-      {val, cache} = do_fib(cache, n - 1)
-      result = val + cache[n-2]
-      {result, Dict.put(cache, n, result)}
+    case cache[n] do
+      nil ->
+        { n_1, cache } = do_fib(cache, n-1)
+        result         = n_1 + cache[n-2]
+        { result, Map.put(cache, n, result) }
+
+      cached_value ->
+        { cached_value , cache }
     end
   end
+
 end
- 
+
 {:ok, agent} = FibAgent.start_link()
 IO.puts FibAgent.fib(agent, 2000)

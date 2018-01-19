@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Sequence.Server do
   use GenServer
@@ -13,7 +13,7 @@ defmodule Sequence.Server do
   # External API  
 
   def start_link(current_number) do
-    {:ok, _pid} = GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
+    GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
   end
 
   def next_number do
@@ -27,6 +27,10 @@ defmodule Sequence.Server do
   #####
   # GenServer implementation
 
+  def init(initial_number) do
+    { :ok, initial_number }
+  end
+  
   def handle_call(:next_number, _from, current_number) do
     { :reply, current_number, current_number+1 }
   end
@@ -35,7 +39,4 @@ defmodule Sequence.Server do
     { :noreply, current_number + delta}
   end
 
-  def format_status(_reason, [ _pdict, state ]) do
-    [data: [{'State', "My current state is '#{inspect state}', and I'm happy"}]] 
-  end
 end

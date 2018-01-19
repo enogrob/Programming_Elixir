@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Tracer do
   
@@ -21,15 +21,17 @@ defmodule Tracer do
   end
 
   def log(prefix, msg, param) do
-    IO.ANSI.escape("%{cyan}#{prefix} %{green}#{msg} %{yellow}#{param}") |> IO.puts
+    import IO.ANSI
+    [ cyan(), prefix, green(), msg, yellow(), param, reset() ]
+    |> IO.puts
   end
 
   defmacro def(definition = {name, _meta, args}, do: contents) do
     quote do
       Kernel.def unquote(definition) do
-        Tracer.log "==>", "call   ", Tracer.call_seq(unquote(name), unquote(args))
+        Tracer.log "=> ", "call    ", Tracer.call_seq(unquote(name), unquote(args))
         result = unquote(contents)
-        Tracer.log "<==", "returns", inspect(result)
+        Tracer.log "<= ", "returns ", inspect(result)
         result
       end
     end

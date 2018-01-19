@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule ColorSigil do
 
@@ -21,7 +21,7 @@ defmodule ColorSigil do
   def sigil_c(color_name, 'h'), do: _c(color_name, :hsb)
 
   defp _c(color_name, color_space) do
-    @color_map[color_space][binary_to_atom(color_name)] 
+    @color_map[color_space][String.to_atom(color_name)]
   end
 
   defmacro __using__(_opts) do

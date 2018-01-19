@@ -1,23 +1,24 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Issues.TableFormatter do
 
   import Enum, only: [ each: 2, map: 2, map_join: 3, max: 1 ]
 
   def print_table_for_columns(rows, headers) do
-    data_by_columns = split_into_columns(rows, headers)
-    column_widths   = widths_of(data_by_columns)
-    format          = format_for(column_widths)
-
-    puts_one_line_in_columns headers, format
-    IO.puts                  separator(column_widths)
-    puts_in_columns          data_by_columns, format
+    with data_by_columns = split_into_columns(rows, headers),
+         column_widths   = widths_of(data_by_columns),
+         format          = format_for(column_widths)
+    do
+         puts_one_line_in_columns(headers, format)
+         IO.puts(separator(column_widths))
+         puts_in_columns(data_by_columns, format)
+    end
   end
 
   def split_into_columns(rows, headers) do
@@ -51,5 +52,4 @@ defmodule Issues.TableFormatter do
   def puts_one_line_in_columns(fields, format) do
     :io.format(format, fields)
   end
-
 end

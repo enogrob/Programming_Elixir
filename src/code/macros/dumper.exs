@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule My do
   defmacro macro(param) do
@@ -23,22 +23,25 @@ defmodule Test do
   My.macro "binaries"   #=> "binaries"
   My.macro { 1, 2 }     #=> {1,2}
   My.macro do: 1        #=> [do: 1]
-  My.macro do           #=> [do: 1]
-    1
-  end
 
   # And these are represented by 3-element tuples
-  My.macro { 1,2,3,4,5 } #=> {:"{}",[line: 20],[1,2,3,4,5]}
 
-  My.macro do: ( a = 1; a+a ) #=> 
-  #   [do: 
-  #     {:__block__,[],
+  My.macro { 1,2,3,4,5 }
+  # =>  {:"{}",[line: 20],[1,2,3,4,5]}
+
+  My.macro do: ( a = 1; a+a )
+  # =>  [do:
+  #      {:__block__,[],
   #        [{:=,[line: 22],[{:a,[line: 22],nil},1]},
   #         {:+,[line: 22],[{:a,[line: 22],nil},{:a,[line: 22],nil}]}]}]
 
-  My.macro do #=> [do: {:+,[line: 24],[1,2]}, else: {:+,[line: 26],[3,4]}]
+
+  My.macro do
     1+2
   else
     3+4
   end
+  # =>   [do: {:+,[line: 24],[1,2]},
+  #       else: {:+,[line: 26],[3,4]}]
+
 end

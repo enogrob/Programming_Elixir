@@ -1,10 +1,10 @@
 #---
-# Excerpted from "Programming Elixir",
+# Excerpted from "Programming Elixir ≥ 1.6",
 # published by The Pragmatic Bookshelf.
-# Copyrights apply to this code. It may not be used to create training material, 
+# Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
-# We make no guarantees that this code is fit for any purpose. 
-# Visit http://www.pragmaticprogrammer.com/titles/elixir for more book information.
+# We make no guarantees that this code is fit for any purpose.
+# Visit http://www.pragmaticprogrammer.com/titles/elixir16 for more book information.
 #---
 defmodule Sequence.Server do
   use GenServer
@@ -12,12 +12,14 @@ defmodule Sequence.Server do
   #####
   # External API  
 
-  def start_link(stash_pid) do
-    {:ok, _pid} = GenServer.start_link(__MODULE__, stash_pid, name: __MODULE__)
+  def start_link(_) do
+    GenServer.start_link(__MODULE__, nil, name: __MODULE__)
   end
+
   def next_number do
     GenServer.call __MODULE__, :next_number
   end
+
   def increment_number(delta) do
     GenServer.cast __MODULE__, {:increment_number, delta}
   end
@@ -25,17 +27,20 @@ defmodule Sequence.Server do
   #####
   # GenServer implementation
 
-  def init(stash_pid) do
-    current_number = Sequence.Stash.get_value stash_pid
-    { :ok, {current_number, stash_pid} }
+  def init(_) do
+    { :ok, Sequence.Stash.get() }
   end
-  def handle_call(:next_number, _from, {current_number, stash_pid}) do 
-    { :reply, current_number, {current_number+1, stash_pid} }
+  
+  def handle_call(:next_number, _from, current_number) do
+    { :reply, current_number, current_number+1 }
   end
-  def handle_cast({:increment_number, delta}, {current_number, stash_pid}) do
-    { :noreply, {current_number + delta, stash_pid}}
+
+  def handle_cast({:increment_number, delta}, current_number) do
+    { :noreply, current_number + delta}
   end
-  def terminate(_reason, {current_number, stash_pid}) do
-    Sequence.Stash.save_value stash_pid, current_number
+
+  def terminate(_reason, current_number) do
+    Sequence.Stash.update(current_number)
   end
+  
 end
