@@ -116,6 +116,7 @@ Organizing a Project
 [ ] Task: Create Project Documentation
 [ ] Coding by Transforming Data
 Concurrent Programming
+[ ] Dummy
 Working with Multiple Processes
 [ ] A Simple Process
 [ ] Process Overhead
@@ -124,7 +125,7 @@ Working with Multiple Processes
 [ ] A Fibonacci Server
 [ ] Agents—A Teaser
 [ ] Thinking in Processes
-Nodes—The Key to Distributing Services excerpt
+Nodes—The Key to Distributing Services
 [ ] Naming Nodes
 [ ] Naming Your Processes
 [ ] I/O, PIDs, and Nodes
@@ -135,18 +136,26 @@ OTP: Servers
 [ ] GenServer Callbacks
 [ ] Naming a Process
 [ ] Tidying Up the Interface
+[ ] Making Our Server Into a Component
 OTP: Supervisors
 [ ] Supervisors and Workers
+[ ] Worker Restart Options
 [ ] Supervisors Are the Heart of Reliability
+A More Complex Example
+[ ] Introduction to Duper
+[ ] The Duper Application
+[ ] But Does It Work?
+[ ] Planning your Elixir Application
+[ ] Next Up
 OTP: Applications
 [ ] This Is Not Your Father’s Application
 [ ] The Application Specification File
 [ ] Turning Our Sequence Program into an OTP Application
 [ ] Supervision Is the Basis of Reliability
 [ ] Releasing Your Code
-[ ] EXRM—the Elixir Release Manager
-OTP Is Big—Unbelievably Big
-[ ] Tasks and Agents
+[ ] Distillery - The Elixir Release Manager
+[ ] OTP Is Big—Unbelievably Big
+Tasks and Agents
 [ ] Tasks
 [ ] Agents
 [ ] A Bigger Example
