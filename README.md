@@ -17,20 +17,27 @@ Programming Elixir
 
 Table of Contents
 
-[x] Take the red pill
-Conventional Programming
-Pattern Matching
+1.Take the red pill
+[x] Programming Should Be About Transforming Data
+[x] Installing Elixir
+[x] Running Elixir
+[x] Suggestions for Reading the book
+[x] Exercises
+[x] Thinking Differently
+
+Part I - Conventional Programming
+2. Pattern Matching
 [x] Assignment: I Do Not Think It Means What You Think It Means.
 [x] More Complex Matches
 [x] Ignoring a Value with _ (Underscore)
 [x] Variables Bind Once (per Match)
 [x] Another Way of Looking at the Equals Sign
-Immutability
+3. Immutability
 [x] You Already Have (Some) Immutable Data
 [x] Immutable Data Is Known Data
 [x] Performance Implications of Immutability
 [x] Coding with Immutable Data
-Elixir Basics
+4. Elixir Basics
 [x] Built-in Types
 [x] Value Types
 [x] System Types
@@ -39,13 +46,13 @@ Elixir Basics
 [ ] Names, Source Files, Conventions, Operators, and So On
 [ ] Variable Scope
 [ ] End of the Basics
-Anonymous Functions
+5. Anonymous Functions
 [ ] Functions and Pattern Matching
 [ ] One Function, Multiple Bodies
 [ ] Functions Can Return Functions
 [ ] Passing Functions As Arguments
 [ ] Functions Are the Core
-Modules and Named Functions
+6. Modules and Named Functions
 [ ] Compiling a Module
 [ ] The Function’s Body Is a Block
 [ ] Function Calls and Pattern Matching
@@ -58,7 +65,7 @@ Modules and Named Functions
 [ ] Module Names: Elixir, Erlang, and Atoms
 [ ] Calling a Function in an Erlang Library
 [ ] Finding Libraries
-Lists and Recursion excerpt
+7. Lists and Recursion excerpt
 [ ] Heads and Tails
 [ ] Using Head and Tail to Process a List
 [ ] Using Head and Tail to Build a List
@@ -67,7 +74,7 @@ Lists and Recursion excerpt
 [ ] More Complex List Patterns
 [ ] The List Module in Action
 [ ] Get Friendly with Lists
-Maps, Keyword Lists, Sets, and Structs
+8. Maps, Keyword Lists, Sets, and Structs
 [ ] How to Choose Between Maps and Keyword Lists
 [ ] Keyword Lists
 [ ] Maps
@@ -77,14 +84,14 @@ Maps, Keyword Lists, Sets, and Structs
 [ ] Nested Dictionary Structures
 [ ] Sets
 [ ] With Great Power Comes Great Temptation
-An Aside—What Are Types?
-Processing Collections—Enum and Stream
+9. An Aside—What Are Types?
+10. Processing Collections—Enum and Stream
 [ ] Enum—Processing Collections
 [ ] Streams—Lazy Enumerables
 [ ] The Collectable Protocol
 [ ] Comprehensions
 [ ] Moving Past Divinity
-Strings and Binaries
+11. Strings and Binaries
 [ ] String Literals
 [ ] The Name “strings”
 [ ] Single-Quoted Strings—Lists of Character Codes
@@ -92,14 +99,14 @@ Strings and Binaries
 [ ] Double-Quoted Strings Are Binaries
 [ ] Binaries and Pattern Matching
 [ ] Familiar Yet Strange
-Control Flow
+12. Control Flow
 [ ] if and unless
 [ ] cond
 [ ] case
 [ ] Raising Exceptions
 [ ] Designing with Exceptions
 [ ] Doing More with Less
-Organizing a Project
+13. Organizing a Project
 [ ] The Project: Fetch Issues from GitHub
 [ ] Task: Use Mix to Create Our New Project
 [ ] Transformation: Parse the Command Line
@@ -115,9 +122,16 @@ Organizing a Project
 [ ] Task: Test the Comments
 [ ] Task: Create Project Documentation
 [ ] Coding by Transforming Data
-Concurrent Programming
-[ ] Dummy
-Working with Multiple Processes
+14. Tooling
+[ ] Debugging with IEx
+[x] Testing
+[ ] Code Dependencies
+[ ] Server Monitoring
+[ ] Source-Code Formatting
+[ ] Inevitably. There is More
+
+Part II - Concurrent Programming
+15. Working with Multiple Processes
 [ ] A Simple Process
 [ ] Process Overhead
 [ ] When Processes Die
@@ -125,29 +139,29 @@ Working with Multiple Processes
 [ ] A Fibonacci Server
 [ ] Agents—A Teaser
 [ ] Thinking in Processes
-Nodes—The Key to Distributing Services
+16. Nodes—The Key to Distributing Services
 [ ] Naming Nodes
 [ ] Naming Your Processes
 [ ] I/O, PIDs, and Nodes
 [ ] Nodes Are the Basis of Distribution
-OTP: Servers
+17. OTP: Servers
 [ ] Some OTP Definitions
 [ ] An OTP Server
 [ ] GenServer Callbacks
 [ ] Naming a Process
 [ ] Tidying Up the Interface
 [ ] Making Our Server Into a Component
-OTP: Supervisors
+18. OTP: Supervisors
 [ ] Supervisors and Workers
 [ ] Worker Restart Options
 [ ] Supervisors Are the Heart of Reliability
-A More Complex Example
+19. A More Complex Example
 [ ] Introduction to Duper
 [ ] The Duper Application
 [ ] But Does It Work?
 [ ] Planning your Elixir Application
 [ ] Next Up
-OTP: Applications
+20. OTP: Applications
 [ ] This Is Not Your Father’s Application
 [ ] The Application Specification File
 [ ] Turning Our Sequence Program into an OTP Application
@@ -155,13 +169,14 @@ OTP: Applications
 [ ] Releasing Your Code
 [ ] Distillery - The Elixir Release Manager
 [ ] OTP Is Big—Unbelievably Big
-Tasks and Agents
+21. Tasks and Agents
 [ ] Tasks
 [ ] Agents
 [ ] A Bigger Example
 [ ] Agents and Tasks, or GenServer?
-More-Advanced Elixir
-Macros and Code Evaluation
+
+Part III - More-Advanced Elixir
+22. Macros and Code Evaluation
 [ ] Implementing an if Statement
 [ ] Macros Inject Code
 [ ] Using the Representation As Code
@@ -171,19 +186,19 @@ Macros and Code Evaluation
 [ ] Macros and Operators
 [ ] Digging Deeper
 [ ] Digging Ridiculously Deep
-Linking Modules: Behavio(u)rs and Use
+23. Linking Modules: Behavio(u)rs and Use
 [ ] Behaviours
 [ ] Use and using
 [ ] Putting It Together—Tracing Method Calls
 [ ] Use use
-Protocols—Polymorphic Functions
+24. Protocols—Polymorphic Functions
 [ ] Defining a Protocol
 [ ] Implementing a Protocol
 [ ] The Available Types
 [ ] Protocols and Structs
 [ ] Build-In Protocols
 [ ] Protocols Are Polymorphism
-More Cool Stuff
+25. More Cool Stuff
 [ ] Writing Your Own Sigils
 [ ] Multi-app Umbrella Projects
 [ ] But Wait! There’s More!
