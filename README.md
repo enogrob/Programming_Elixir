@@ -42,10 +42,12 @@ Part I - Conventional Programming
 [x] Value Types
 [x] System Types
 [x] Collection Types
-[ ] Maps
-[ ] Names, Source Files, Conventions, Operators, and So On
-[ ] Variable Scope
-[ ] End of the Basics
+[x] Maps
+[x] Binaries
+[x] Date and Times
+[x] Names, Source Files, Conventions, Operators, and So On
+[x] Variable Scope
+[x] End of the Basics
 5. Anonymous Functions
 [ ] Functions and Pattern Matching
 [ ] One Function, Multiple Bodies
