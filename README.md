@@ -49,9 +49,9 @@ Part I - Conventional Programming
 [x] Variable Scope
 [x] End of the Basics
 5. Anonymous Functions
-[ ] Functions and Pattern Matching
-[ ] One Function, Multiple Bodies
-[ ] Functions Can Return Functions
+[x] Functions and Pattern Matching
+[x] One Function, Multiple Bodies
+[x] Functions Can Return Functions
 [ ] Passing Functions As Arguments
 [ ] Functions Are the Core
 6. Modules and Named Functions
