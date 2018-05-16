@@ -52,8 +52,8 @@ Part I - Conventional Programming
 [x] Functions and Pattern Matching
 [x] One Function, Multiple Bodies
 [x] Functions Can Return Functions
-[ ] Passing Functions As Arguments
-[ ] Functions Are the Core
+[x] Passing Functions As Arguments
+[x] Functions Are the Core
 6. Modules and Named Functions
 [ ] Compiling a Module
 [ ] The Function’s Body Is a Block
