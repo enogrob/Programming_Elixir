@@ -55,18 +55,18 @@ Part I - Conventional Programming
 [x] Passing Functions As Arguments
 [x] Functions Are the Core
 6. Modules and Named Functions
-[ ] Compiling a Module
-[ ] The Function’s Body Is a Block
-[ ] Function Calls and Pattern Matching
-[ ] Guard Clauses
-[ ] Default Parameters
-[ ] Private Functions
-[ ] The Amazing Pipe Operator: |>
-[ ] Modules
-[ ] Module Attributes
-[ ] Module Names: Elixir, Erlang, and Atoms
-[ ] Calling a Function in an Erlang Library
-[ ] Finding Libraries
+[x] Compiling a Module
+[x] The Function’s Body Is a Block
+[x] Function Calls and Pattern Matching
+[x] Guard Clauses
+[x] Default Parameters
+[x] Private Functions
+[x] The Amazing Pipe Operator: |>
+[x] Modules
+[x] Module Attributes
+[x] Module Names: Elixir, Erlang, and Atoms
+[x] Calling a Function in an Erlang Library
+[x] Finding Libraries
 7. Lists and Recursion excerpt
 [ ] Heads and Tails
 [ ] Using Head and Tail to Process a List
