@@ -68,12 +68,14 @@ Part I - Conventional Programming
 [x] Calling a Function in an Erlang Library
 [x] Finding Libraries
 7. Lists and Recursion excerpt
-[ ] Heads and Tails
-[ ] Using Head and Tail to Process a List
-[ ] Using Head and Tail to Build a List
-[ ] Creating a Map Function
-[ ] Keeping Track of Values During Recursion
+[x] Heads and Tails
+[x] Using Head and Tail to Process a List
+[x] Using Head and Tail to Build a List
+[x] Creating a Map Function
+[x] Reducing a List to a Single Value
+[~] Exercises
 [ ] More Complex List Patterns
+[ ] Exercises
 [ ] The List Module in Action
 [ ] Get Friendly with Lists
 8. Maps, Keyword Lists, Sets, and Structs
