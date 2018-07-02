@@ -73,7 +73,7 @@ Part I - Conventional Programming
 [x] Using Head and Tail to Build a List
 [x] Creating a Map Function
 [x] Reducing a List to a Single Value
-[~] Exercises
+[x] Exercises
 [ ] More Complex List Patterns
 [ ] Exercises
 [ ] The List Module in Action

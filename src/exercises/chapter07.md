@@ -46,6 +46,24 @@ iex> MyList.caesar('ryvkve', 13)
 
 ```elixir
 defmodule MyList do
-  def caesar(list), do: list
+  def caesar(list, value) do
+    caesar(list, value, [])
+  end
+
+  defp caesar([], _value, new_list), do: transpose(new_list)
+  defp caesar([head|tail], value, new_list) when head + value <= 122 do
+    caesar(tail, value, [head + value | new_list])
+  end
+  defp caesar([head|tail], value, new_list) when head + value > 122 do
+    caesar(tail, value, new_list)
+  end
+
+  defp transpose(list) do
+    transpose(list, [])
+  end
+  defp transpose([], transpose_list), do: transpose_list
+  defp transpose([head|tail], transpose_list) do
+    transpose(tail, [head | transpose_list])
+  end
 end
 ```
